@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
-import MainPage from './MainPage';
+import MainPage from './pages/MainPage';
 
 export default class App extends Component {
   render() {
