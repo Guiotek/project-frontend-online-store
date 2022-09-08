@@ -15,9 +15,9 @@ export default class App extends Component {
             component={ MainPage }
           />
           <Route
-          exact
-          path="/cart"
-          component={ Cart }
+            exact
+            path="/cart"
+            component={ Cart }
           />
         </Switch>
       </BrowserRouter>
