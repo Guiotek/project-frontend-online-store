@@ -1,14 +1,21 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getProductsFromCategoryAndQuery } from '../services/api';
+import { getProductsFromCategoryAndQuery, getCategories } from '../services/api';
 import Card from '../components/Card';
+import Categories from '../components/Categories';
 
 export default class MainPage extends Component {
   state = {
     search: '',
     searchedProduct: [],
     update: false,
+    categories: [],
   };
+
+  async componentDidMount() {
+    const fetchCategories = await getCategories();
+    this.setState({ categories: fetchCategories });
+  }
 
   onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -33,7 +40,7 @@ export default class MainPage extends Component {
   };
 
   render() {
-    const { searchedProduct, update } = this.state;
+    const { searchedProduct, update, categories } = this.state;
     return (
       <div>
         <h1
@@ -56,6 +63,14 @@ export default class MainPage extends Component {
         >
           Pesquisar
         </button>
+        <aside>
+          {
+            categories.map((category) => (<Categories
+              key={ category.id }
+              name={ category.name }
+            />))
+          }
+        </aside>
         { searchedProduct.length === 0 && <p>Nenhum produto foi encontrado</p> }
         {
           update && searchedProduct.map((product) => (<Card
