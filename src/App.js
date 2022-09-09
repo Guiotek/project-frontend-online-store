@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.css';
 import MainPage from './pages/MainPage';
 import Cart from './pages/Cart';
+import ProductDetails from './pages/ProductDetails';
 
 export default class App extends Component {
   render() {
@@ -18,6 +19,10 @@ export default class App extends Component {
             exact
             path="/cart"
             component={ Cart }
+          />
+          <Route
+            path="/details/:id"
+            component={ ProductDetails }
           />
         </Switch>
       </BrowserRouter>

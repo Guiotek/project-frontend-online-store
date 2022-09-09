@@ -88,6 +88,7 @@ export default class MainPage extends Component {
             image={ product.thumbnail }
             title={ product.title }
             price={ product.price }
+            id={ product.id }
           />))
         }
       </div>
