@@ -13,16 +13,16 @@ export default class App extends Component {
           <Route
             exact
             path="/"
-            component={MainPage}
+            component={ MainPage }
           />
           <Route
             exact
             path="/cart"
-            component={Cart}
+            component={ Cart }
           />
           <Route
             path="/details/:id"
-            component={ProductDetails}
+            component={ ProductDetails }
           />
         </Switch>
       </BrowserRouter>
