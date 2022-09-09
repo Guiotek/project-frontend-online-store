@@ -39,6 +39,14 @@ export default class MainPage extends Component {
     });
   };
 
+  checkRadio = async ({ target }) => {
+    const fetchedProduct = await getProductsFromCategoryAndQuery(target.id);
+    this.setState({
+      searchedProduct: fetchedProduct.results,
+      update: true,
+    });
+  };
+
   render() {
     const { searchedProduct, update, categories } = this.state;
     return (
@@ -67,7 +75,9 @@ export default class MainPage extends Component {
           {
             categories.map((category) => (<Categories
               key={ category.id }
+              id={ category.id }
               name={ category.name }
+              onClick={ this.checkRadio }
             />))
           }
         </aside>
