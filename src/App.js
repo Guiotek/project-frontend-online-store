@@ -22,10 +22,6 @@ export default class App extends Component {
           />
           <Route
             path="/details/:id"
-            // render={(props) => (
-            //   <ProductDetails
-            //     {...props}
-            //   />)}
             component={ProductDetails}
           />
         </Switch>
