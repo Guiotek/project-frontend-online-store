@@ -20,11 +20,24 @@ export default class ProductDetails extends Component {
     });
   }
 
+  addToLocalStorage = (image, title, price) => {
+    let products = [];
+    const storage = localStorage.getItem('products');
+    if (storage) {
+      products = (JSON.parse(localStorage.getItem('products')));
+    }
+    products.push({ image, title, price });
+    localStorage.setItem('products', JSON.stringify(products));
+  };
+
   render() {
     const { product } = this.state;
     const { name, price, image } = product;
     return (
       <div>
+        <h1 data-testid="product-detail-name">{ name }</h1>
+        <img src={ image } alt={ name } data-testid="product-detail-image" />
+        <h3 data-testid="product-detail-price">{ price }</h3>
         <Link to="/cart">
           <button
             data-testid="shopping-cart-button"
@@ -33,9 +46,13 @@ export default class ProductDetails extends Component {
             carrinho de compras
           </button>
         </Link>
-        <h1 data-testid="product-detail-name">{ name }</h1>
-        <img src={ image } alt={ name } data-testid="product-detail-image" />
-        <h3 data-testid="product-detail-price">{ price }</h3>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => this.addToLocalStorage(image, name, price) }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
