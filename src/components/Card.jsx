@@ -4,13 +4,13 @@ import { Link } from 'react-router-dom';
 
 export default class Card extends Component {
   addToLocalStorage = (image, title, price) => {
-    const products = [];
+    let products = [];
     const storage = localStorage.getItem('products');
     if (storage) {
-      products.push(localStorage.getItem('products'));
+      products = (JSON.parse(localStorage.getItem('products')));
     }
     products.push({ image, title, price });
-    localStorage.setItem('products', products);
+    localStorage.setItem('products', JSON.stringify(products));
   };
 
   render() {
