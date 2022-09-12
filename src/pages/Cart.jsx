@@ -1,10 +1,10 @@
 import { Component } from 'react';
+import CartItem from '../components/CartItem';
 
 export default class Cart extends Component {
   state = {
     empty: true,
     products: [],
-    quantity: 1,
   };
 
   componentDidMount() {
@@ -13,19 +13,27 @@ export default class Cart extends Component {
     this.setState({ products: items });
   }
 
+  updatePage = () => {
+    const product = JSON.parse(localStorage.getItem('products'));
+    if (product) this.setState({ empty: false });
+    this.setState({ products: product });
+  };
+
   render() {
-    const { empty, products, quantity } = this.state;
+    const { empty, products } = this.state;
     return (
       <div>
         { empty ? (
           <p data-testid="shopping-cart-empty-message"> Seu carrinho está vazio</p>)
-          : products.map((product) => (
-            <div key={ product.title }>
-              <img src={ product.image } alt={ product.title } />
-              <p data-testid="shopping-cart-product-name">{ product.title }</p>
-              <p>{ product.price }</p>
-              <p data-testid="shopping-cart-product-quantity">{ quantity }</p>
-            </div>))}
+          : products.map((product, i) => (
+            <CartItem
+              key={ i }
+              title={ product.title }
+              image={ product.image }
+              price={ product.price }
+              updatePage={ this.updatePage }
+            />
+          ))}
       </div>
     );
   }
