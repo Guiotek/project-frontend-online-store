@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import Review from '../components/Review';
 
 export default class ProductDetails extends Component {
   state = {
@@ -31,6 +32,7 @@ export default class ProductDetails extends Component {
   };
 
   render() {
+    const { match: { params: { id } } } = this.props;
     const { product } = this.state;
     const { name, price, image } = product;
     return (
@@ -53,6 +55,7 @@ export default class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
+        <Review id={ id } />
       </div>
     );
   }
