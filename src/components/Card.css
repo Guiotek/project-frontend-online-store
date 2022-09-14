@@ -1,0 +1,13 @@
+#card{
+  max-width: 200px;
+  min-width: 150px;
+}
+.image {
+  width: 160px;
+}
+#card h4 {
+color: black;
+}
+.h4 {
+  text-decoration: none white;
+}

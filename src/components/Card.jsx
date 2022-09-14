@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
+import './Card.css';
 
 export default class Card extends Component {
   addToLocalStorage = (image, title, price) => {
@@ -16,7 +17,7 @@ export default class Card extends Component {
   render() {
     const { image, title, price, id } = this.props;
     return (
-      <div>
+      <div id="card">
         <Link
           to={ `/details/${id}` }
           data-testid="product-detail-link"
@@ -25,9 +26,18 @@ export default class Card extends Component {
             <img
               src={ image }
               alt={ title }
+              className="image"
             />
-            <p>{ title }</p>
-            <p>{ price }</p>
+            <h4
+              className="h4"
+            >
+              { title }
+            </h4>
+            <h4>
+              R$:
+              {' '}
+              { price }
+            </h4>
           </div>
         </Link>
         <button
