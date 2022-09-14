@@ -29,10 +29,8 @@ export default class MainPage extends Component {
     if (search === '') {
       return null;
     }
-    // console.log(searchedProduct);
     const fetchedProduct = (
       await getProductsFromCategoryAndQuery(undefined, search));
-    // console.log(fetchedProduct.results);
     this.setState({
       searchedProduct: fetchedProduct.results,
       update: true,

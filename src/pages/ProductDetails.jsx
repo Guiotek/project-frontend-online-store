@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
+import Review from '../components/Review';
 
 export default class ProductDetails extends Component {
   state = {
@@ -26,11 +27,12 @@ export default class ProductDetails extends Component {
     if (storage) {
       products = (JSON.parse(localStorage.getItem('products')));
     }
-    products.push({ image, title, price });
+    products.push({ image, title, price, quantity: 1 });
     localStorage.setItem('products', JSON.stringify(products));
   };
 
   render() {
+    const { match: { params: { id } } } = this.props;
     const { product } = this.state;
     const { name, price, image } = product;
     return (
@@ -53,6 +55,7 @@ export default class ProductDetails extends Component {
         >
           Adicionar ao carrinho
         </button>
+        <Review id={ id } />
       </div>
     );
   }
