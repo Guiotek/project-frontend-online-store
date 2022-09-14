@@ -27,7 +27,7 @@ export default class ProductDetails extends Component {
     if (storage) {
       products = (JSON.parse(localStorage.getItem('products')));
     }
-    products.push({ image, title, price });
+    products.push({ image, title, price, quantity: 1 });
     localStorage.setItem('products', JSON.stringify(products));
   };
 

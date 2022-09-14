@@ -6,6 +6,22 @@ export default class CartItem extends Component {
     quantity: 1,
   };
 
+  componentDidMount() {
+    const { quantity } = this.props;
+    this.setState({ quantity });
+  }
+
+  componentDidUpdate() {
+    const { title } = this.props;
+    const { quantity } = this.state;
+    const previousStorage = JSON.parse(localStorage.getItem('products'));
+    const item = previousStorage.filter((e) => e.title === title);
+    item[0].quantity = quantity;
+    const updatedStorage = previousStorage.filter((e) => e.title !== title);
+    updatedStorage.push(item[0]);
+    localStorage.setItem('products', JSON.stringify(updatedStorage));
+  }
+
   handleClickIncrease = () => {
     const { quantity } = this.state;
     this.setState({
